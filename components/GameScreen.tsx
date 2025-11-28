@@ -132,21 +132,22 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onGameOver }) => {
     <div className="flex flex-col h-full max-w-md mx-auto relative">
       {/* Top HUD */}
       <div className="flex justify-between items-center p-4 bg-white/80 backdrop-blur-sm rounded-b-3xl shadow-sm z-10">
-        <div className="flex items-center gap-2">
-          <div className="bg-indigo-100 p-2 rounded-xl">
-            <span className="font-jua text-indigo-700 text-xl">{currentDan}단</span>
+        <div className="flex items-center gap-3">
+          <div className="bg-indigo-100 p-2 rounded-xl text-center min-w-[4.5rem] shadow-sm">
+            <div className="font-jua text-indigo-700 text-xl leading-none">{currentDan}단</div>
+            <div className="text-[11px] text-indigo-500 font-bold mt-1 bg-white/50 rounded-full px-1">+{currentDan * 10}점</div>
           </div>
           <div className="flex flex-col">
-            <span className="text-xs text-slate-500 font-bold">SCORE</span>
-            <span className="font-jua text-xl text-slate-800 leading-none">{score.toLocaleString()}</span>
+            <span className="text-xs text-slate-500 font-bold tracking-wide">SCORE</span>
+            <span className="font-jua text-2xl text-slate-800 leading-none">{score.toLocaleString()}</span>
           </div>
         </div>
 
-        <div className="flex gap-1">
+        <div className="flex gap-1 bg-slate-100 p-1.5 rounded-full">
           {[1, 2, 3].map((i) => (
             <Heart 
               key={i} 
-              className={`w-6 h-6 transition-colors ${i <= lives ? 'fill-rose-500 text-rose-500' : 'fill-slate-200 text-slate-200'}`} 
+              className={`w-6 h-6 transition-all duration-300 ${i <= lives ? 'fill-rose-500 text-rose-500 scale-100' : 'fill-slate-200 text-slate-200 scale-90'}`} 
             />
           ))}
         </div>
@@ -173,12 +174,12 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onGameOver }) => {
           {/* Feedback Overlay Icons */}
           {feedback === 'correct' && (
             <div className="absolute inset-0 flex items-center justify-center z-20 animate-bounce">
-              <CheckCircle className="w-32 h-32 text-green-500 bg-white rounded-full" />
+              <CheckCircle className="w-32 h-32 text-green-500 bg-white rounded-full shadow-xl" />
             </div>
           )}
           {feedback === 'wrong' && (
             <div className="absolute inset-0 flex items-center justify-center z-20">
-              <XCircle className="w-32 h-32 text-rose-500 bg-white rounded-full" />
+              <XCircle className="w-32 h-32 text-rose-500 bg-white rounded-full shadow-xl" />
             </div>
           )}
 
@@ -188,7 +189,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onGameOver }) => {
             <span>{question.multiplier}</span>
             <span className="text-slate-400">=</span>
             <div className={`
-              min-w-[120px] h-20 border-b-4 text-center leading-normal
+              min-w-[120px] h-20 border-b-4 text-center leading-normal transition-colors duration-300
               ${userAnswer ? 'text-indigo-600 border-indigo-600' : 'text-transparent border-slate-300'}
               ${feedback === 'correct' ? 'text-green-500 border-green-500' : ''}
               ${feedback === 'wrong' ? 'text-rose-500 border-rose-500' : ''}
