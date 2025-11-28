@@ -1,0 +1,5 @@
+{
+  "name": "구구단 마스터 (Gugudan Master)",
+  "description": "단수가 올라갈수록 점수가 높아지는 즐거운 구구단 게임입니다. 2단부터 시작하여 전설의 19단까지 도전해보세요!",
+  "requestFramePermissions": []
+}
